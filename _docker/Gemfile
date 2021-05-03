@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+
+gem "puma"
+gem "sinatra"
+gem "sinatra-cross_origin"
+gem "httpclient"
+gem "google-cloud-translate"
+gem "json"
+gem "rsolr"
