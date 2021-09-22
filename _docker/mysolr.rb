@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding:utf-8;mode:ruby -*-
 
 class MySolr
   require 'rsolr'

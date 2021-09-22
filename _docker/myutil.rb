@@ -1,4 +1,3 @@
-
 class MyUtil
   def self.add_data(label, array, result)
     array.append({ :engine => label,

@@ -2,6 +2,10 @@
 
 This project contains the sample docker implementation deribed from the openapi.yaml file.
 
+# Original
+
+* https://github.com/YasuhiroABE/docker-sccp-sinatra-sample
+
 # Getting started
 
 ```

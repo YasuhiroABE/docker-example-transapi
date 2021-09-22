@@ -1,8 +1,5 @@
-require './lib/mysolr'
-require './lib/myutil'
-require './lib/dataapi'
-require './lib/deeplapi'
-require './lib/gct'
+require 'json'
+
 
 MyApp.add_route('GET', '/dict', {
   "resourcePath" => "/Default",
@@ -24,10 +21,11 @@ MyApp.add_route('GET', '/dict', {
   # the guts live here
   param = {}
   param[:q] = params.has_key?(:q) ? Rack::Utils.escape_html(params[:q]) : ""
-  
+
   solr = MySolr.new
   solr.search("id:#{param[:q]}").to_json
-end 
+end
+
 
 MyApp.add_route('POST', '/dict', {
   "resourcePath" => "/Default",
@@ -54,7 +52,6 @@ MyApp.add_route('POST', '/dict', {
     ]}) do
   cross_origin
   # the guts live here
-
   ret = { :result => false }
 
   param = {}
@@ -80,7 +77,6 @@ MyApp.add_route('GET', '/.spec', {
   cross_origin
   # the guts live here
 
-  {"message" => "yes, it worked"}.to_json
 end
 
 
@@ -104,7 +100,7 @@ MyApp.add_route('GET', '/trans', {
   # the guts live here
   param = {}
   param[:q] = params.has_key?(:q) ? Rack::Utils.escape_html(params[:q]) : ""
-  
+
   ## prepare the data structure to be returned.
   ret = {
     :version => "1.0",

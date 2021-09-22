@@ -2,3 +2,5 @@
 /code*
 /docs*
 /openapitools.json
+/setup-solr-core
+/var.solr

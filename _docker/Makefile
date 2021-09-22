@@ -1,10 +1,10 @@
 
-NAME = sinatra-webapp
-DOCKER_IMAGE = sinatra-webapp
-DOCKER_IMAGE_VERSION = 0.1.1
+NAME = example-transapi
+DOCKER_IMAGE = example-transapi
+DOCKER_IMAGE_VERSION = 1.0.0
 IMAGE_NAME = $(DOCKER_IMAGE)
-REGISTRY_SERVER = inovtst9.u-aizu.ac.jp
-REGISTRY_LIBRARY = $(shell id -un)
+REGISTRY_SERVER = docker.io
+REGISTRY_LIBRARY = yasuhiroabe
 
 PROTOCOL = http
 HOST = 0.0.0.0

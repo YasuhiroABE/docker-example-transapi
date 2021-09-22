@@ -7,3 +7,4 @@ gem "httpclient"
 gem "google-cloud-translate"
 gem "json"
 gem "rsolr"
+

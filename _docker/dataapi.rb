@@ -1,4 +1,3 @@
-
 class DataAPI
   JA = "ja"
   EN = "en"
