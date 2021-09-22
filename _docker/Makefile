@@ -9,7 +9,6 @@ REGISTRY_LIBRARY = yasuhiroabe
 PROTOCOL = http
 HOST = 0.0.0.0
 PORT = 8080
-URI_PATH = search
 
 .PHONY: run bundle-install docker-build docker-build-prod docker-tag docker-push docker-run docker-stop stop
 
@@ -40,14 +39,17 @@ docker-push:
 
 docker-run:
 	sudo docker run -it --rm  \
+		--volume $$(pwd)/gct-key.json:/gct-key.json \
 		--env LC_CTYPE=ja_JP.UTF-8 \
+		--env GOOGLE_APPLICATION_CREDENTIALS="/gct-key.json" \
+		--env GOOGLE_PROJECT_ID="your-project-id" \
+		--env DEEPL_HOST="api.deepl.com" \
+		--env DEEPL_AUTHKEY="xxxx-xxxx-xxxx-xxxx-xxxx" \
+		--env SOLR_URI="http://localhost:8983/solr/solrbook" \
 		-p $(PORT):8080 \
 		--name $(NAME) \
                 $(IMAGE_NAME)
 
 docker-stop:
 	sudo docker stop $(NAME)
-
-stop:
-	killall ruby2.5
 

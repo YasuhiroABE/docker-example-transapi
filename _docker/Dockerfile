@@ -20,7 +20,11 @@ COPY --from=rubydev /app /app
 WORKDIR /app
 
 ENV SINATRA_PORT 8080
-ENV FORM_BASEURI http://127.0.0.1:8080/search
+ENV GOOGLE_APPLICATION_CREDENTIALS /gct-api.key
+ENV GOOGLE_PROJECT_ID your-project-id
+ENV DEEPL_HOST api.deepl.com
+ENV DEEPL_AUTHKEY xxxxx-xxxxx-xxxxxxx-xxxxx-xxxxxx
+ENV SOLR_URI http://localhost:8983/solr/solrbook
 EXPOSE $SINATRA_PORT
 
 ADD run.sh /run.sh
