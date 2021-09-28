@@ -1,4 +1,3 @@
-require 'json'
 
 
 MyApp.add_route('GET', '/dict', {
@@ -111,7 +110,8 @@ MyApp.add_route('GET', '/trans', {
 
   deepl = DeepLAPI.new
   gct = GoogleCloudTranslate.new
-  for result in [["deepl", deepl.trans(param[:q])], ["gct", gct.trans(param[:q])]]
+  ats = AzureTranslate.new
+  for result in [["deepl", deepl.trans(param[:q])], ["gct", gct.trans(param[:q])], ["ats", ats.trans(param[:q])]]
     MyUtil::add_data(result[0], ret[:results], result[1])
   end
   ret.to_json

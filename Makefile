@@ -23,6 +23,8 @@ gen-code:
 	cp _docker/dataapi.rb code/lib/
 	cp _docker/deeplapi.rb code/lib/
 	cp _docker/gct.rb code/lib/
+	cp _docker/ats.rb code/lib/
+	cp _docker/gct-key.json code/
 
 ## Please install the command as following: $ pip3 install openapi-spec-validator --user
 validate:
@@ -33,7 +35,7 @@ clean:
 
 diff-files:
 	diff -u _docker/default_api.rb code/api/default_api.rb
-	diff -u _docker/Makefile code/Makefile
+	@echo diff -u _docker/Makefile code/Makefile
 	diff -u _docker/Dockerfile code/Dockerfile
 	diff -u _docker/run.sh code/run.sh
 	diff -u _docker/Gemfile code/Gemfile
@@ -43,6 +45,7 @@ diff-files:
 	diff -u _docker/dataapi.rb code/lib/dataapi.rb
 	diff -u _docker/deeplapi.rb code/lib/deeplapi.rb
 	diff -u _docker/gct.rb code/lib/gct.rb
+	diff -u _docker/ats.rb code/lib/ats.rb
 
 solr-run:
 	sudo docker run -it --rm -d \

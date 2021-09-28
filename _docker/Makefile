@@ -13,7 +13,12 @@ PORT = 8080
 .PHONY: run bundle-install docker-build docker-build-prod docker-tag docker-push docker-run docker-stop stop
 
 run: bundle-install
-	bundle exec rackup --host $(HOST) --port $(PORT)
+	env GOOGLE_APPLICATION_CREDENTIALS="./gct-key.json" \
+	    GOOGLE_PROJECT_ID="your-project-id" \
+	    DEEPL_HOST="api.deepl.com" \
+	    DEEPL_AUTHKEY="xxxx-xxxx-xxxx-xxxx-xxxx" \
+	    MSATS_KEY="xxxxxxxxxxxx" \
+		bundle exec rackup --host $(HOST) --port $(PORT)
 
 bundle-install:
 	bundle config set path lib
