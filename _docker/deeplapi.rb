@@ -11,12 +11,13 @@ class DeepLAPI < DataAPI
 
   def query_api(query)
     ret = {}
-    query = { :auth_key => @auth_key }.merge(query)
-    p query
+    header = {
+      "Authorization" => "DeepL-Auth-Key #{@auth_key}"
+    }
     begin
       client = HTTPClient.new
       url = "https://#{@deepl_host}#{DEEPL_TRANS_PATH}"
-      resp = client.get(url, { :query => query })
+      resp = client.post(url, query, header)
       ret = JSON.parse(resp.body)
     rescue
       puts "[error] query_api: failed to query: #{:host},#{:path},#{:query}."
@@ -40,7 +41,6 @@ class DeepLAPI < DataAPI
             :translate_text => "",
             :to_lang => to_lang }
     trans_result =  query_trans(s, to_lang, src_lang)
-    p trans_result
     ret[:translate_text] = trans_result["translations"][0]["text"]
     return ret
   end
