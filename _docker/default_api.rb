@@ -18,6 +18,7 @@ MyApp.add_route('GET', '/dict', {
     ]}) do
   cross_origin
   # the guts live here
+  content_type :json
   param = {}
   param[:q] = params.has_key?(:q) ? Rack::Utils.escape_html(params[:q]) : ""
 
@@ -51,6 +52,7 @@ MyApp.add_route('POST', '/dict', {
     ]}) do
   cross_origin
   # the guts live here
+  content_type :json
   ret = { :result => false }
 
   param = {}
@@ -61,6 +63,7 @@ MyApp.add_route('POST', '/dict', {
   ret[:result]  = solr.add({ :id => param[:ja], :translation => param[:en],
                              :content_edgengram => param[:ja].to_s,
                              :updated => DateTime.now.iso8601 }, false)
+  ret.to_json
 end
 
 
@@ -75,7 +78,8 @@ MyApp.add_route('GET', '/.spec', {
     ]}) do
   cross_origin
   # the guts live here
-
+  content_type :yaml
+  File.read("openapi.yaml") 
 end
 
 
@@ -97,6 +101,7 @@ MyApp.add_route('GET', '/trans', {
     ]}) do
   cross_origin
   # the guts live here
+  content_type :json
   param = {}
   param[:q] = params.has_key?(:q) ? Rack::Utils.escape_html(params[:q]) : ""
 
