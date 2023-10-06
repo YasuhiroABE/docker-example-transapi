@@ -3,7 +3,7 @@ DOCKER_CMD = docker
 
 NAME = example-transapi
 DOCKER_IMAGE = example-transapi
-DOCKER_IMAGE_VERSION = 1.1.0
+DOCKER_IMAGE_VERSION = 1.2.0
 IMAGE_NAME = $(DOCKER_IMAGE)
 REGISTRY_SERVER = docker.io
 REGISTRY_LIBRARY = yasuhiroabe
