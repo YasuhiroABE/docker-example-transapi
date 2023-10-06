@@ -18,6 +18,7 @@ gen-code:
 	cp _docker/run.sh code/
 	cp _docker/Gemfile code/
 	cp _docker/config.ru code/
+	cp _docker/my_app.rb code/
 	cp _docker/mysolr.rb code/lib/
 	cp _docker/myutil.rb code/lib/
 	cp _docker/dataapi.rb code/lib/
@@ -40,6 +41,7 @@ diff-files:
 	diff -u _docker/run.sh code/run.sh
 	diff -u _docker/Gemfile code/Gemfile
 	diff -u _docker/config.ru code/config.ru
+	diff -u _docker/my_app.rb code/my_app.rb
 	diff -u _docker/mysolr.rb code/lib/mysolr.rb
 	diff -u _docker/myutil.rb code/lib/myutil.rb
 	diff -u _docker/dataapi.rb code/lib/dataapi.rb
