@@ -1,4 +1,4 @@
-FROM ruby:3.2-alpine as rubydev
+FROM ruby:3.3.3-alpine as rubydev
 
 RUN apk update && \
     apk add --no-cache tzdata bash ca-certificates \
@@ -11,7 +11,7 @@ RUN bundle config set path lib
 RUN bundle install
 
 ## Build runtime
-FROM ruby:3.2-alpine
+FROM ruby:3.3.3-alpine
 
 RUN apk update && \
     apk add --no-cache tzdata bash ca-certificates
