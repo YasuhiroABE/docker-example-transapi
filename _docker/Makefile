@@ -1,5 +1,7 @@
 
-DOCKER_CMD = docker
+DOCKER_CMD = "podman" ## if you use the non-rootless mode, then changing to "sudo docker"
+DOCKER_OPT =          ## --security-opt label=disable
+DOCKER_BUILDER = mabuilder
 
 NAME = example-transapi
 DOCKER_IMAGE = example-transapi
@@ -31,7 +33,7 @@ docker-build:
 	rm -f Gemfile.lock
 	rm -fr lib/ruby
 	rm -fr .bundle
-	$(DOCKER_CMD) build . --pull --tag $(IMAGE_NAME)
+	$(DOCKER_CMD) build . --tag $(IMAGE_NAME)
 
 docker-build-prod:
 	rm -f Gemfile.lock
