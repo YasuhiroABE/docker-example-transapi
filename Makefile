@@ -1,6 +1,7 @@
 
-OAGEN_CLI = openapi-generator-cli
-OASV_CLI = $(HOME)/.local/bin/openapi-spec-validator
+DOCKER_CMD = podman ## podman or docker
+DOCKER_OPT =        ## default: empty, "--security-opt label=disable"
+OAGEN_CLI = $(DOCKER_CMD) run $(DOCKER_OPT) --rm -v "${PWD}:/local" docker.io/openapitools/openapi-generator-cli:latest
 
 .PHONY: manual gen-docs gen-code validate clean diff-files
 
@@ -8,10 +9,10 @@ manual:
 	firefox "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md"
 
 gen-docs:
-	$(OAGEN_CLI) generate -g html -o docs -i openapi.yaml
+	$(OAGEN_CLI) generate -g html -o /local/docs -i /local/openapi.yaml
 
 gen-code:
-	$(OAGEN_CLI) generate -g ruby-sinatra -o code -i openapi.yaml
+	$(OAGEN_CLI) generate -g ruby-sinatra -o /local/code -i /local/openapi.yaml
 	cp _docker/default_api.rb code/api/
 	cp _docker/Makefile code/
 	cp _docker/Dockerfile code/
@@ -29,7 +30,7 @@ gen-code:
 
 ## Please install the command as following: $ pip3 install openapi-spec-validator --user
 validate:
-	$(OASV_CLI) openapi.yaml
+	$(DOCKER_CMD) run $(DOCKER_OPT) -v `pwd`/openapi.yaml:/openapi.yaml --rm docker.io/pythonopenapi/openapi-spec-validator:latest /openapi.yaml
 
 clean:
 	find . -type f -name '*~' -exec rm {} \; -print
