@@ -9,3 +9,5 @@ gem "json"
 gem "rsolr"
 gem "cgi"
 
+gem "rackup"
+gem "mutex_m"
